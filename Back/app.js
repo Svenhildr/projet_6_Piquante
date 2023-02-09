@@ -6,12 +6,14 @@ const sauceRoute = require("./routes/saucesRoute");
 const userRoute = require("./routes/user");
 
 const app = express();
+const dotenv = require("dotenv");
+require("dotenv").config();
 
 app.use(express.json());
 
 mongoose
   .connect(
-    "mongodb+srv://svenhild:MongoPswd@cluster0.6bo8wnd.mongodb.net/test",
+    `mongodb+srv://${process.env.DB_ADMIN}:${process.env.DB_PASSWORD}@cluster0.6bo8wnd.mongodb.net/test`,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("Connexion à MongoDB réussie !"))
